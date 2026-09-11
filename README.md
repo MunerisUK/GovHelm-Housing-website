@@ -1,8 +1,11 @@
 # IHAP Website
 
-The public website for **IHAP — the open source Integrated Housing Application
-Platform**: a 20-page static site covering the platform, its documentation, and
-the project behind it.
+The public website for **IHAP — the Integrated Housing Application Platform**:
+a 17-page static site covering the platform, its documentation, and the
+commercial model behind it.
+
+IHAP is commercial software under a low-cost licence. The site says so plainly
+rather than implying openness.
 
 No build step, no dependencies, no framework. Every page is plain HTML served
 as-is, sharing one stylesheet and one small progressive-enhancement script.
@@ -36,12 +39,9 @@ getting-started.html    Ten-minute local quick start
 api.html                REST API reference
 deployment.html         Topologies, sizing, operations
 case-studies.html       Illustrative deployment scenarios
-community.html          Where development happens
-contributing.html       How to contribute
-governance.html         Roles, decisions, commitments
-faq.html                Frequently asked questions
-news.html               Releases and project updates
-contact.html            How to reach the project
+faq.html                Licensing, cost, technical fit, risk
+news.html               Releases and product updates
+contact.html            Pricing, demonstrations, support, security
 
 assets/css/site.css     The whole stylesheet, sectioned and commented
 assets/js/site.js       Theme toggle, nav dropdowns, mobile menu
@@ -75,12 +75,28 @@ keeping intact when editing:
 
 ## Content status
 
-The copy describes IHAP as a pre-release platform and is a first draft for
-review rather than approved communications. The deployment scenarios on
-`case-studies.html` are explicitly labelled as illustrative composites, not
-accounts of named organisations; replace them with real case studies as
-providers go live.
+The copy describes IHAP as a pre-release product and is a first draft for
+review rather than approved communications. Two things need a decision before
+this is published:
 
-## Licence
+- **No prices appear anywhere.** The site says the licence is low cost, scales
+  with provider size rather than seats, and that a figure is given on the first
+  call. Whether to publish an actual number is a commercial decision that has
+  not been taken.
+- **No contact details appear anywhere.** `contact.html` describes the routes
+  in — sales, evaluation, support, security, accessibility — but carries a note
+  where the addresses and phone numbers belong.
 
-Licensed under the [Apache License, Version 2.0](LICENSE).
+The deployment scenarios on `case-studies.html` are explicitly labelled as
+illustrative composites, not accounts of named organisations; replace them with
+real case studies as providers go live.
+
+Commercial claims made on the site that need signing off: the annual
+subscription model, statutory changes delivered under the licence, source code
+review under NDA, source code escrow, non-production environments not being
+separately licensed, and the 60-day evaluation.
+
+## Copyright
+
+© 2026 Muneris. All rights reserved. This website and its content are not
+licensed for reuse.
