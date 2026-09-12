@@ -8,50 +8,78 @@
    ========================================================================== */
 
 /* 1. Tokens ---------------------------------------------------------------- */
+/* GovHelm Housing edition palette. The ten brand tokens are used verbatim; a few
+   neutral steps are derived from them where a UI needs more than ten values, and
+   each derivation is marked. Contrast is computed, not estimated: Community Green
+   #3FA46A never carries text on a light surface (2.83), so text green is always
+   #2E7D52 and the accent is reserved for fills, rules and artwork. */
 :root {
-  --bg:          #f6f8f7;
-  --bg-alt:      #edf1f0;
-  --surface:     #ffffff;
-  --surface-2:   #f2f5f4;
-  --ink:         #0f1d22;
-  --ink-2:       #4c5f66;
-  --ink-3:       #5a6d73;
-  --line:        #dfe6e5;
-  --line-2:      #eef2f1;
-  --brand:       #0d5c63;
-  --brand-deep:  #083f45;
-  --brand-lift:  #12787f;
-  --brand-soft:  #e2efef;
-  --accent:      #b04c29;
-  --accent-soft: #fbe9e1;
-  --ok:          #1f6f4a;
-  --ok-soft:     #e3f2ea;
-  --on-brand:    #ffffff;   /* text on a brand-filled surface */
-  --cta-from:    #083f45;
-  --cta-to:      #0d5c63;
-  --warn:        #8a5b12;
-  --warn-soft:   #fbf0dc;
-  --shadow-sm:   0 1px 2px rgba(15, 29, 34, .06), 0 1px 1px rgba(15, 29, 34, .04);
-  --shadow:      0 4px 12px rgba(15, 29, 34, .07), 0 1px 3px rgba(15, 29, 34, .05);
-  --shadow-lg:   0 18px 44px rgba(15, 29, 34, .12), 0 2px 8px rgba(15, 29, 34, .06);
+  /* --- brand tokens, verbatim --- */
+  --gh-ink:        #141C2E;
+  --gh-paper:      #F2F4F7;
+  --gh-white:      #FFFFFF;
+  --gh-slate:      #5B6577;
+  --gh-mist:       #DCE3EE;
+  --gh-deep-teal:  #0F2F2E;
+  --gh-green:      #3FA46A;   /* accent. fills, spokes, rules — never text on light */
+  --gh-green-text: #2E7D52;
+  --gh-warm-green: #A7D18D;   /* reversed artwork and accents on dark */
+  --gh-helm-blue:  #2457D6;   /* platform signature, not the edition's */
+
+  /* --- mapped to the site's roles --- */
+  --bg:          var(--gh-white);
+  --bg-alt:      var(--gh-paper);
+  --surface:     var(--gh-white);
+  --surface-2:   var(--gh-paper);
+  --ink:         var(--gh-ink);
+  --ink-2:       var(--gh-slate);
+  --ink-3:       var(--gh-slate);
+  --line:        var(--gh-mist);
+  --line-2:      #E9EDF3;               /* derived: a lighter mist, rules only */
+  --brand:       var(--gh-green-text);  /* anything green that carries words */
+  --brand-deep:  var(--gh-deep-teal);
+  --brand-lift:  #276B46;               /* derived: green-text one step down, for hover */
+  --brand-fill:  var(--gh-green);       /* fills and marks only, never text */
+  --brand-soft:  #EDF6F1;               /* derived: green tint that keeps green-text at AA */
+  --on-brand:    var(--gh-white);
+  --accent:      var(--gh-helm-blue);   /* platform-level affordances: focus, emphasis */
+  --accent-soft: #EFF3FD;               /* derived */
+  --ok:          var(--gh-green-text);
+  --ok-soft:     #EDF6F1;
+  --warn:        var(--gh-deep-teal);   /* no amber exists in the edition palette */
+  --warn-soft:   var(--gh-paper);
+  --cta-from:    var(--gh-deep-teal);
+  --cta-to:      #1B4A47;               /* derived: deep teal, one step up */
+  --shadow-sm:   0 1px 2px rgba(20, 28, 46, .06), 0 1px 1px rgba(20, 28, 46, .04);
+  --shadow:      0 4px 12px rgba(20, 28, 46, .07), 0 1px 3px rgba(20, 28, 46, .05);
+  --shadow-lg:   0 18px 44px rgba(20, 28, 46, .12), 0 2px 8px rgba(20, 28, 46, .06);
   --r-xs: 6px; --r-sm: 10px; --r: 14px; --r-lg: 22px; --r-pill: 999px;
   --wrap: 1180px;
   --head-h: 66px;
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-          Arial, "Noto Sans", sans-serif;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  /* Familjen Grotesk for display, Archivo for body, IBM Plex Mono for data —
+     GovHelm's faces, unchanged. Only 500/600/700 and 400/500 are loaded, so no
+     rule below may ask for a weight outside those. */
+  --w-bold: 700; --w-semi: 600; --w-med: 500;   /* the only weights loaded */
+  --display: "Familjen Grotesk", Arial, sans-serif;
+  --sans: "Archivo", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
+  --serif: var(--display);
   color-scheme: light;
 }
+
+/* Dark uses Deep Teal as the edition surface, with Warm Green as the accent —
+   Community Green is 2.9 on ink and does not hold at this size. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:#0a1317; --bg-alt:#0d1a1f; --surface:#101d22; --surface-2:#16262c;
-    --ink:#e9efee; --ink-2:#a3b6ba; --ink-3:#8ba0a6;
-    --line:#21353b; --line-2:#1a2c32;
-    --brand:#5cb9b2; --brand-deep:#8fd6ce; --brand-lift:#74cdc5; --brand-soft:#11312f;
-    --accent:#e08c66; --accent-soft:#31201a;
-    --ok:#5fc191; --ok-soft:#122b20; --warn:#dfae63; --warn-soft:#2c2314;
-    --on-brand:#04201f; --cta-from:#0c2c30; --cta-to:#124a4c;
+    --bg:#0C2726; --bg-alt:#0F2F2E; --surface:#123634; --surface-2:#17403E;
+    --ink:#F2F4F7; --ink-2:#A9BCBB; --ink-3:#A9BCBB;
+    --line:#23514E; --line-2:#1B4543;
+    --brand:#A7D18D; --brand-deep:#C4E3B0; --brand-lift:#BADFA4;
+    --brand-fill:#3FA46A; --brand-soft:#15362C; --on-brand:#0C2726;
+    --accent:#9DB8FF; --accent-soft:#152740;
+    --ok:#A7D18D; --ok-soft:#15362C;
+    --warn:#A9BCBB; --warn-soft:#17403E;
+    --cta-from:#0C2726; --cta-to:#17403E;
     --shadow-sm:0 1px 2px rgba(0,0,0,.4);
     --shadow:0 6px 16px rgba(0,0,0,.45);
     --shadow-lg:0 20px 50px rgba(0,0,0,.55);
@@ -59,13 +87,15 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg:#0a1317; --bg-alt:#0d1a1f; --surface:#101d22; --surface-2:#16262c;
-  --ink:#e9efee; --ink-2:#a3b6ba; --ink-3:#8ba0a6;
-  --line:#21353b; --line-2:#1a2c32;
-  --brand:#5cb9b2; --brand-deep:#8fd6ce; --brand-lift:#74cdc5; --brand-soft:#11312f;
-  --accent:#e08c66; --accent-soft:#31201a;
-  --ok:#5fc191; --ok-soft:#122b20; --warn:#dfae63; --warn-soft:#2c2314;
-  --on-brand:#04201f; --cta-from:#0c2c30; --cta-to:#124a4c;
+  --bg:#0C2726; --bg-alt:#0F2F2E; --surface:#123634; --surface-2:#17403E;
+  --ink:#F2F4F7; --ink-2:#A9BCBB; --ink-3:#A9BCBB;
+  --line:#23514E; --line-2:#1B4543;
+  --brand:#A7D18D; --brand-deep:#C4E3B0; --brand-lift:#BADFA4;
+  --brand-fill:#3FA46A; --brand-soft:#15362C; --on-brand:#0C2726;
+  --accent:#9DB8FF; --accent-soft:#152740;
+  --ok:#A7D18D; --ok-soft:#15362C;
+  --warn:#A9BCBB; --warn-soft:#17403E;
+  --cta-from:#0C2726; --cta-to:#17403E;
   --shadow-sm:0 1px 2px rgba(0,0,0,.4);
   --shadow:0 6px 16px rgba(0,0,0,.45);
   --shadow-lg:0 20px 50px rgba(0,0,0,.55);
@@ -104,20 +134,25 @@ button { font: inherit; color: inherit; }
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
 .skip {
   position: absolute; left: -9999px; top: 0; z-index: 200;
-  background: var(--brand); color: var(--on-brand); padding: 12px 18px;
-  border-radius: 0 0 var(--r-sm) 0; font-weight: 600; text-decoration: none;
+  background: var(--gh-deep-teal); color: var(--gh-white); padding: 12px 18px;
+  border-radius: 0 0 var(--r-sm) 0; font-weight: 500; text-decoration: none;
 }
-.skip:focus { left: 0; color: var(--on-brand); }
+.skip:focus { left: 0; color: var(--gh-white); }
 
 /* 3. Typography ------------------------------------------------------------ */
-h1, h2, h3, h4 { line-height: 1.18; letter-spacing: -.018em; font-weight: 680; color: var(--ink); }
-h1 { font-size: clamp(2.05rem, 1.25rem + 3.1vw, 3.4rem); letter-spacing: -.03em; text-wrap: balance; }
-h2 { font-size: clamp(1.55rem, 1.16rem + 1.6vw, 2.25rem); letter-spacing: -.024em; }
-h3 { font-size: 1.1rem; letter-spacing: -.012em; font-weight: 660; }
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  line-height: 1.18; letter-spacing: -.018em; font-weight: var(--w-semi); color: var(--ink);
+}
+h1 { font-size: clamp(2.05rem, 1.25rem + 3.1vw, 3.4rem); letter-spacing: -.03em;
+     font-weight: var(--w-bold); text-wrap: balance; }
+h2 { font-size: clamp(1.55rem, 1.16rem + 1.6vw, 2.25rem); letter-spacing: -.024em;
+     font-weight: var(--w-bold); }
+h3 { font-size: 1.1rem; letter-spacing: -.012em; font-weight: var(--w-semi); }
 h4 { font-size: .98rem; }
 p { text-wrap: pretty; }
 .eyebrow {
-  font-size: .755rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  font-size: .755rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
   color: var(--brand); margin-bottom: 14px;
 }
 .lede { font-size: clamp(1.06rem, 1rem + .4vw, 1.28rem); color: var(--ink-2); line-height: 1.6; }
@@ -130,8 +165,9 @@ p { text-wrap: pretty; }
   background: var(--brand-soft); color: var(--ink); font-size: .83rem;
   border-bottom: 1px solid var(--line);
 }
+.banner a { color: var(--brand); }
 .banner p { padding: 7px 0; text-align: center; }
-.banner a { color: inherit; font-weight: 600; white-space: nowrap; }
+.banner a { color: inherit; font-weight: 500; white-space: nowrap; }
 .site-head {
   position: sticky; top: 0; z-index: 90;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
@@ -141,20 +177,36 @@ p { text-wrap: pretty; }
 }
 .head-inner { display: flex; align-items: center; gap: 18px; min-height: var(--head-h); }
 .brand {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center;
   text-decoration: none; color: var(--ink); flex: none;
 }
-.logo-mark { width: 32px; height: 32px; color: var(--brand); flex: none; }
-.brand-txt { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-txt strong { font-size: 1.12rem; letter-spacing: -.02em; font-weight: 760; }
-.brand-txt span { font-size: .655rem; color: var(--ink-3); letter-spacing: .045em; text-transform: uppercase; }
+/* The lockup is artwork, never live text. Full colour on light, reversed on dark —
+   the brand forbids putting the full-colour artwork on a dark surface. Minimum
+   width for the horizontal lockup is 150px, so it never renders below that. */
+.lockup { display: block; width: 187px; height: 40px; flex: none; }
+.on-dark { display: none; }
+:root[data-theme="dark"] .on-light { display: none; }
+:root[data-theme="dark"] .on-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .on-light { display: none; }
+  :root:not([data-theme="light"]) .on-dark { display: block; }
+  :root[data-theme="light"] .on-light { display: block; }
+  :root[data-theme="light"] .on-dark { display: none; }
+}
+.foot-lockup .lockup { width: 210px; height: 45px; }
+/* Visually hidden, but still in the accessibility tree — the link needs a name
+   whichever lockup is showing. */
+.vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
 .primary { margin-left: auto; }
 .nav { list-style: none; padding: 0; display: flex; align-items: center; gap: 2px; }
 .nav-btn, .nav-link {
   display: inline-flex; align-items: center; gap: 5px;
   background: none; border: 0; cursor: pointer;
   padding: 8px 11px; border-radius: var(--r-sm);
-  font-size: .905rem; font-weight: 550; color: var(--ink-2); text-decoration: none;
+  font-size: .905rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
 }
 .nav-btn:hover, .nav-link:hover { background: var(--surface-2); color: var(--ink); }
 .nav-btn.active, .nav-link.active { color: var(--brand); }
@@ -174,7 +226,7 @@ p { text-wrap: pretty; }
 }
 .dd a:hover { background: var(--surface-2); }
 .dd a[aria-current="page"] { background: var(--brand-soft); }
-.dd-t { display: block; font-weight: 620; font-size: .93rem; }
+.dd-t { display: block; font-weight: 500; font-size: .93rem; }
 .dd-d { display: block; font-size: .81rem; color: var(--ink-3); line-height: 1.45; margin-top: 1px; }
 .head-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 .icon-btn {
@@ -204,12 +256,12 @@ p { text-wrap: pretty; }
 .mobile-nav section { padding-top: 16px; }
 .mobile-nav h2 {
   font-size: .715rem; letter-spacing: .13em; text-transform: uppercase;
-  color: var(--ink-3); font-weight: 700; padding: 0 4px 6px;
+  color: var(--ink-3); font-weight: 500; padding: 0 4px 6px;
 }
 .mobile-nav ul { list-style: none; padding: 0; display: grid; gap: 2px; }
 .mobile-nav a {
   display: block; padding: 10px 12px; border-radius: var(--r-sm);
-  text-decoration: none; color: var(--ink); font-weight: 550;
+  text-decoration: none; color: var(--ink); font-weight: 500;
 }
 .mobile-nav a:hover { background: var(--surface-2); }
 .mobile-nav a[aria-current="page"] { background: var(--brand-soft); color: var(--brand); }
@@ -275,11 +327,13 @@ p { text-wrap: pretty; }
   border-radius: var(--r-sm); background: var(--brand-soft); color: var(--brand);
   margin-bottom: 16px;
 }
+/* Community Green is a mark colour, so it is allowed here: no text sits on it. */
+.hero-meta li::before, .step-n { background: var(--brand-fill); }
 .card-tag {
-  font-size: .715rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  font-size: .715rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
   color: var(--ink-3); margin-bottom: 6px;
 }
-.card-link { margin-top: 14px; font-size: .9rem; font-weight: 600; }
+.card-link { margin-top: 14px; font-size: .9rem; font-weight: 500; }
 .card-link a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
 .card-link .ico { width: 16px; height: 16px; transition: transform .18s ease; }
 .card-link a:hover .ico { transform: translateX(3px); }
@@ -303,7 +357,7 @@ p { text-wrap: pretty; }
 .step-n {
   display: grid; place-items: center; width: 32px; height: 32px; flex: none;
   border-radius: 50%; background: var(--brand); color: var(--on-brand);
-  font-size: .85rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  font-size: .85rem; font-weight: 500; font-variant-numeric: tabular-nums;
 }
 .step h3 { margin-bottom: 4px; }
 .step p { color: var(--ink-2); font-size: .94rem; }
@@ -316,7 +370,8 @@ p { text-wrap: pretty; }
   border-radius: var(--r);
 }
 .stat-v {
-  display: block; font-size: clamp(1.7rem, 1.3rem + 1.3vw, 2.3rem); font-weight: 720;
+  display: block; font-size: clamp(1.7rem, 1.3rem + 1.3vw, 2.3rem);
+  font-family: var(--display); font-weight: var(--w-bold);
   letter-spacing: -.03em; color: var(--brand); line-height: 1.1;
 }
 .stat-l { display: block; font-size: .86rem; color: var(--ink-2); margin-top: 6px; }
@@ -329,7 +384,7 @@ p { text-wrap: pretty; }
 .pill {
   display: inline-block; padding: 3px 11px; border-radius: var(--r-pill);
   background: var(--surface-2); border: 1px solid var(--line);
-  font-size: .755rem; font-weight: 620; color: var(--ink-2);
+  font-size: .755rem; font-weight: 500; color: var(--ink-2);
 }
 .pill.brand { background: var(--brand-soft); border-color: transparent; color: var(--brand); }
 .pill.ok { background: var(--ok-soft); border-color: transparent; color: var(--ok); }
@@ -340,7 +395,7 @@ p { text-wrap: pretty; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 11px 20px; border-radius: var(--r-sm); border: 1px solid transparent;
-  font-size: .93rem; font-weight: 620; text-decoration: none; cursor: pointer;
+  font-size: .93rem; font-weight: 500; text-decoration: none; cursor: pointer;
   background: var(--brand); color: var(--on-brand);
   transition: background .16s ease, transform .16s ease, border-color .16s ease;
 }
@@ -379,7 +434,7 @@ table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: .92
 th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
 thead th {
   background: var(--surface-2); font-size: .775rem; letter-spacing: .07em;
-  text-transform: uppercase; color: var(--ink-2); font-weight: 700;
+  text-transform: uppercase; color: var(--ink-2); font-weight: 500;
   border-bottom: 1px solid var(--line);
 }
 tbody tr:last-child td { border-bottom: 0; }
@@ -428,7 +483,7 @@ td code, p code, li code {
   overflow: hidden;
 }
 .faq summary {
-  cursor: pointer; padding: 16px 20px; font-weight: 620; font-size: 1rem;
+  cursor: pointer; padding: 16px 20px; font-weight: 500; font-size: 1rem;
   list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px;
 }
 .faq summary::-webkit-details-marker { display: none; }
@@ -451,7 +506,7 @@ td code, p code, li code {
 .tl.done::before { background: var(--ok); border-color: var(--ok-soft); }
 .tl.now::before { background: var(--accent); border-color: var(--accent-soft); }
 .tl-tag {
-  font-size: .755rem; font-weight: 700; letter-spacing: .1em;
+  font-size: .755rem; font-weight: 500; letter-spacing: .1em;
   text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px;
 }
 .tl.now .tl-tag { color: var(--accent); }
@@ -474,7 +529,7 @@ td code, p code, li code {
 .prose p { color: var(--ink-2); }
 .prose blockquote {
   border-left: 3px solid var(--brand); padding: 4px 0 4px 20px;
-  font-family: var(--serif); font-size: 1.12rem; color: var(--ink);
+  font-family: var(--display); font-size: 1.18rem; font-weight: var(--w-med); color: var(--ink);
 }
 .prose blockquote cite { display: block; font: 500 .85rem var(--sans); color: var(--ink-3); margin-top: 10px; font-style: normal; }
 .toc {
@@ -483,7 +538,7 @@ td code, p code, li code {
 }
 .toc-t {
   font-size: .715rem; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ink-3); font-weight: 700; margin-bottom: 10px;
+  color: var(--ink-3); font-weight: 500; margin-bottom: 10px;
 }
 .toc ul { list-style: none; padding: 0; display: grid; gap: 3px; }
 .toc a {
@@ -502,9 +557,9 @@ td code, p code, li code {
 .pager a:hover { border-color: var(--brand); }
 .pager span {
   display: block; font-size: .755rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink-3); font-weight: 700; margin-bottom: 3px;
+  color: var(--ink-3); font-weight: 500; margin-bottom: 3px;
 }
-.pager strong { color: var(--ink); font-weight: 620; }
+.pager strong { color: var(--ink); font-weight: 500; }
 .pager .next { text-align: right; }
 .pager .next:only-child { grid-column: 2; }
 .diagram {
@@ -512,8 +567,8 @@ td code, p code, li code {
   padding: 26px; overflow-x: auto;
 }
 .diagram svg { display: block; margin-inline: auto; min-width: 480px; max-width: 780px; }
-.dg-label { font: 600 12px var(--sans); fill: var(--ink); }
-.dg-sub { font: 500 10.5px var(--sans); fill: var(--ink-3); }
+.dg-label { font: 500 12px var(--display); fill: var(--ink); }
+.dg-sub { font: 400 10.5px var(--sans); fill: var(--ink-3); }
 .dg-box { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
 .dg-box-b { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 1.5; }
 .dg-line { stroke: var(--ink-3); stroke-width: 1.4; fill: none; }
@@ -531,7 +586,7 @@ figcaption { font-size: .85rem; color: var(--ink-3); margin-top: 12px; text-alig
 .foot-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
 .foot-nav h2 {
   font-size: .715rem; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ink-3); font-weight: 700; margin-bottom: 12px;
+  color: var(--ink-3); font-weight: 500; margin-bottom: 12px;
 }
 .foot-nav ul { list-style: none; padding: 0; display: grid; gap: 8px; }
 .foot-nav a { font-size: .89rem; color: var(--ink-2); text-decoration: none; }
@@ -579,7 +634,7 @@ figcaption { font-size: .85rem; color: var(--ink-3); margin-top: 12px; text-alig
 @media (max-width: 560px) {
   .cols-4 { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
-  .brand-txt span { display: none; }
+  .lockup { width: 155px; height: 33px; }
   /* The mobile menu already carries Contact, so the header CTA would only crowd it. */
   .demo-link { display: none; }
   .pager { grid-template-columns: 1fr; }
