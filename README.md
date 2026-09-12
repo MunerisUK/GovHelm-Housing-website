@@ -1,7 +1,7 @@
 # IHAP Website
 
 The public website for **IHAP — the Integrated Housing Application Platform**:
-an 18-page static site covering the platform, its documentation, and the
+a 17-page static site covering the platform, its documentation, and the
 commercial model behind it.
 
 IHAP is commercial software under a low-cost licence. The site says so plainly
@@ -35,7 +35,6 @@ security.html           Controls, UK GDPR, threat model
 accessibility.html      WCAG 2.2 AA commitment and testing
 roadmap.html            Release plan and versioning policy
 docs.html               Documentation index
-getting-started.html    Ten-minute local quick start
 api.html                REST API reference
 deployment.html         Topologies, sizing, operations
 comparison.html         How IHAP compares, with maturity markers
