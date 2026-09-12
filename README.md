@@ -50,14 +50,56 @@ assets/img/favicon.svg  Site icon
 
 ## Brand
 
-The platform brand is **GovHelm**; this product is **GovHelm Housing**. The
-header and footer lockups use `GovHelm` with `Housing` as the descriptor line,
-so a second product in the family would slot in beside it without a redesign.
+Applied from **GovHelm Housing sub-brand pack v1.0**. GovHelm Housing is an
+*edition* of GovHelm, not a separate identity: it uses the GovHelm mark, wordmark
+and typefaces, and owns only the `Housing` descriptor, Community Green as an
+accent, and the product icon.
 
-Technical identifiers follow the platform brand, not the product: `govhelmctl`,
-`GOVHELM_ENV`, `X-GovHelm-*` headers, `registry.govhelm.dev`, `charts.govhelm.dev`
-and the `govhelm-*` container names. Those domains and command names are
-placeholders and need confirming against what you actually register.
+### Rules the pack states, and this site obeys
+
+- **The lockup is artwork, never live text.** `assets/brand/lockup-horizontal.svg`
+  on light, `lockup-horizontal-reversed.svg` on dark — the full-colour artwork must
+  never go on a dark surface. Both are in the markup and CSS swaps them by theme.
+  The link's accessible name comes from a visually hidden span, so it survives
+  either state.
+- **Community Green `#3FA46A` never carries text on a light surface** — it is
+  2.83:1 and fails AA. Text green is always `#2E7D52` (`--brand`); the accent is
+  confined to fills and marks (`--brand-fill`).
+- **Minimum lockup width is 150px.** The header renders it at 187px, dropping to
+  155px under 560px wide — never below the minimum.
+- **Blue and green do different jobs.** Helm Blue `#2457D6` marks platform-level
+  affordances (focus rings); Community Green marks housing-domain state. No
+  element uses both for the same job.
+- **Only the loaded weights are used.** Familjen Grotesk 500/600/700 for display,
+  Archivo 400/500 for body, IBM Plex Mono 400/500 for data. `--w-bold`,
+  `--w-semi` and `--w-med` exist so no rule can ask for a weight that would be
+  synthesised.
+
+### Colour tokens
+
+The ten brand tokens are declared verbatim as `--gh-*` at the top of
+`site.css` and mapped onto the site's roles. A handful of neutral steps are
+derived where a UI needs more than ten values; each is commented as derived.
+**The edition palette has no amber**, so the caution treatment uses Deep Teal
+rather than an invented colour — worth a decision if you want a true warning hue.
+
+### Typography is self-hosted
+
+The pack's `fonts.css` points at Google Fonts. This site instead serves the
+woff2 files from `assets/fonts/` (Latin and Latin Extended, 14 files, ~288 KB),
+so no visitor request leaves the site to fetch a typeface — which also avoids the
+third-party-transfer question a public sector buyer will ask. All three faces are
+SIL OFL; `assets/fonts/OFL.txt` carries the licence.
+
+Because font fetches are CORS-scoped, **the fonts do not load from `file://`** —
+opening `index.html` directly falls back to Arial. Serve the folder over HTTP
+(`python3 -m http.server`) to see it as deployed.
+
+### Still placeholders
+
+`govhelmctl`, `GOVHELM_ENV`, `X-GovHelm-*`, `registry.govhelm.dev`,
+`charts.govhelm.dev` and the `govhelm-*` container names were invented before the
+brand pack arrived. They need confirming against what you actually register.
 
 ## Editing
 
