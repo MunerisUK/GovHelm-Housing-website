@@ -1,11 +1,11 @@
-# IHAP Website
+# GovHelm Housing Website
 
-The public website for **IHAP — the Integrated Housing Application Platform**:
+The public website for **GovHelm Housing**, the housing management platform from Muneris:
 a 17-page static site covering the platform, its documentation, and the
 commercial model behind it.
 
-IHAP is commercial software under a low-cost licence. The site says so plainly
-rather than implying openness.
+GovHelm Housing is commercial software under a low-cost licence. The site says
+so plainly rather than implying openness.
 
 No build step, no dependencies, no framework. Every page is plain HTML served
 as-is, sharing one stylesheet and one small progressive-enhancement script.
@@ -37,7 +37,7 @@ roadmap.html            Release plan and versioning policy
 docs.html               Documentation index
 api.html                REST API reference
 deployment.html         Topologies, sizing, operations
-comparison.html         How IHAP compares, with maturity markers
+comparison.html         How GovHelm Housing compares, with maturity markers
 case-studies.html       Illustrative deployment scenarios
 faq.html                Licensing, cost, technical fit, risk
 news.html               Releases and product updates
@@ -47,6 +47,17 @@ assets/css/site.css     The whole stylesheet, sectioned and commented
 assets/js/site.js       Theme toggle, nav dropdowns, mobile menu
 assets/img/favicon.svg  Site icon
 ```
+
+## Brand
+
+The platform brand is **GovHelm**; this product is **GovHelm Housing**. The
+header and footer lockups use `GovHelm` with `Housing` as the descriptor line,
+so a second product in the family would slot in beside it without a redesign.
+
+Technical identifiers follow the platform brand, not the product: `govhelmctl`,
+`GOVHELM_ENV`, `X-GovHelm-*` headers, `registry.govhelm.dev`, `charts.govhelm.dev`
+and the `govhelm-*` container names. Those domains and command names are
+placeholders and need confirming against what you actually register.
 
 ## Editing
 
@@ -82,7 +93,7 @@ defined on `comparison.html`:
 - **Built** — code complete and in a released version you can run today.
 - **Designed** — specified and scheduled, not yet written.
 
-IHAP currently has **no Deployed capabilities**: it is pre-release, running in
+GovHelm Housing currently has **no Deployed capabilities**: it is pre-release, running in
 pilot and evaluation environments only. `comparison.html` says so prominently
 and `modules.html` marks each module. Keep these in step — a capability that
 moves from Designed to Built must be changed in both places, and the roadmap
@@ -90,7 +101,7 @@ must agree.
 
 ## Content status
 
-The copy describes IHAP as a pre-release product and is a first draft for
+The copy describes GovHelm Housing as a pre-release product and is a first draft for
 review rather than approved communications. Two things need a decision before
 this is published:
 
@@ -111,7 +122,7 @@ subscription model, statutory changes delivered under the licence, source code
 review under NDA, source code escrow, non-production environments not being
 separately licensed, and the 60-day evaluation.
 
-`comparison.html` compares IHAP against four **archetypes** of housing system,
+`comparison.html` compares GovHelm Housing against four **archetypes** of housing system,
 not four named vendors. No competitive analysis was supplied when the page was
 written, and a supplier publishing invented capability claims about named
 competitors is both unreliable and legally exposed. If you want named columns,
@@ -120,5 +131,5 @@ it — the page structure takes named vendors without change.
 
 ## Copyright
 
-© 2026 Muneris. All rights reserved. This website and its content are not
-licensed for reuse.
+© 2026 Muneris. GovHelm and GovHelm Housing are trademarks of Muneris.
+This website and its content are not licensed for reuse.
