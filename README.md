@@ -1,7 +1,7 @@
 # IHAP Website
 
 The public website for **IHAP — the Integrated Housing Application Platform**:
-a 17-page static site covering the platform, its documentation, and the
+an 18-page static site covering the platform, its documentation, and the
 commercial model behind it.
 
 IHAP is commercial software under a low-cost licence. The site says so plainly
@@ -38,6 +38,7 @@ docs.html               Documentation index
 getting-started.html    Ten-minute local quick start
 api.html                REST API reference
 deployment.html         Topologies, sizing, operations
+comparison.html         How IHAP compares, with maturity markers
 case-studies.html       Illustrative deployment scenarios
 faq.html                Licensing, cost, technical fit, risk
 news.html               Releases and product updates
@@ -73,6 +74,21 @@ keeping intact when editing:
 - **Theme-aware.** Pages follow the operating system theme by default and
   remember an explicit choice in `localStorage`.
 
+## Maturity markers
+
+Capability claims are marked with one of three words, used precisely and
+defined on `comparison.html`:
+
+- **Deployed** — running in a live service, handling real cases.
+- **Built** — code complete and in a released version you can run today.
+- **Designed** — specified and scheduled, not yet written.
+
+IHAP currently has **no Deployed capabilities**: it is pre-release, running in
+pilot and evaluation environments only. `comparison.html` says so prominently
+and `modules.html` marks each module. Keep these in step — a capability that
+moves from Designed to Built must be changed in both places, and the roadmap
+must agree.
+
 ## Content status
 
 The copy describes IHAP as a pre-release product and is a first draft for
@@ -95,6 +111,13 @@ Commercial claims made on the site that need signing off: the annual
 subscription model, statutory changes delivered under the licence, source code
 review under NDA, source code escrow, non-production environments not being
 separately licensed, and the 60-day evaluation.
+
+`comparison.html` compares IHAP against four **archetypes** of housing system,
+not four named vendors. No competitive analysis was supplied when the page was
+written, and a supplier publishing invented capability claims about named
+competitors is both unreliable and legally exposed. If you want named columns,
+supply the verified analysis and the archetype columns can be replaced with
+it — the page structure takes named vendors without change.
 
 ## Copyright
 
