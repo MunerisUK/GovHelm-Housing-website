@@ -1,4 +1,4 @@
-/* IHAP site behaviour: theme toggle, primary nav dropdowns, mobile menu.
+/* GovHelm Housing site behaviour: theme toggle, primary nav dropdowns, mobile menu.
    Progressive enhancement only — every page works with JavaScript disabled. */
 (function () {
   'use strict';
@@ -9,7 +9,7 @@
 
   function currentTheme() {
     var stored = null;
-    try { stored = localStorage.getItem('ihap-theme'); } catch (e) {}
+    try { stored = localStorage.getItem('govhelm-theme'); } catch (e) {}
     if (stored) return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
@@ -18,7 +18,7 @@
     toggle.addEventListener('click', function () {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      try { localStorage.setItem('ihap-theme', next); } catch (e) {}
+      try { localStorage.setItem('govhelm-theme', next); } catch (e) {}
       toggle.setAttribute('aria-label',
         next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     });

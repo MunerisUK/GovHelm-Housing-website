@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IHAP — Integrated Housing Application Platform
+   GovHelm Housing — integrated housing management for UK providers
    Single stylesheet. No build step, no dependencies.
    1. Tokens      5. Sections        9. Docs components
    2. Reset       6. Cards & grids  10. Footer
@@ -384,7 +384,7 @@ thead th {
 }
 tbody tr:last-child td { border-bottom: 0; }
 tbody tr:hover { background: var(--surface-2); }
-/* Comparison matrices: the IHAP column is the subject, so keep it tinted. */
+/* Comparison matrices: the GovHelm column is the subject, so keep it tinted. */
 .cmp th:nth-child(2), .cmp td:nth-child(2),
 .cmp tbody tr:hover td:nth-child(2) { background: var(--brand-soft); }
 .cmp td:first-child { min-width: 180px; }
